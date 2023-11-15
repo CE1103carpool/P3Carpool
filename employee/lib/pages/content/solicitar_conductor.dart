@@ -1,3 +1,4 @@
+import 'package:employee/pages/content/estado_Viaje.dart';
 import 'package:employee/widgets/driver_card.dart';
 import 'package:employee/widgets/origen_destino.dart';
 import 'package:employee/widgets/page_tittle.dart';
@@ -107,7 +108,7 @@ class _SollicitarConductorState extends State<SollicitarConductor> {
         ready = !ready;
       });
     } else {
-      print("hola");
+      /*print("hola");
       return http.post(
         Uri.parse('https://rstest2.montero.tk/'),
         headers: <String, String>{
@@ -116,6 +117,12 @@ class _SollicitarConductorState extends State<SollicitarConductor> {
         body: jsonEncode(<String, String>{
           'title': "hola",
         }),
+      );*/
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const EstadoDelViaje(),
+        ),
       );
     }
   }
