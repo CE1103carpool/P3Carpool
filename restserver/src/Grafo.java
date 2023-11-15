@@ -13,7 +13,7 @@ public class Grafo {
     }
 
     public void agregarArista(int origen, int destino) {
-        // Agregar una arista en ambas direcciones (grafo no dirigido)
+        //Agregar una arista en ambas direcciones (grafo no dirigido)
         listaAdyacencia.get(origen).add(destino);
         listaAdyacencia.get(destino).add(origen);
     }
