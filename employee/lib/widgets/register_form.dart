@@ -1,7 +1,11 @@
+import 'package:employee/pages/auth/new_register.dart';
 import 'package:flutter/material.dart';
 
 class RegisterForm extends StatelessWidget {
-  const RegisterForm({super.key});
+  late final NewRegister register;
+  RegisterForm({super.key, required NewRegister registerState}) {
+    register = registerState;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +31,7 @@ class RegisterForm extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: 20.0),
               child: TextField(
-                //controller: emailController,
+                controller: register.userC,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   fillColor: Theme.of(context).colorScheme.secondary,
@@ -56,7 +60,7 @@ class RegisterForm extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: 20.0),
               child: TextField(
-                //controller: passwordController,
+                controller: register.pwsC,
                 obscureText: true,
                 decoration: InputDecoration(
                   border: InputBorder.none,
@@ -73,7 +77,7 @@ class RegisterForm extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.02,
           ),
-          const Text("Repetir Contraseña:"),
+          const Text("Nombre del Usuario:"),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.01,
           ),
@@ -87,12 +91,12 @@ class RegisterForm extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: 20.0),
               child: TextField(
-                //controller: emailController,
+                controller: register.nameC,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   fillColor: Theme.of(context).colorScheme.secondary,
-                  hintText: '************',
-                  icon: const Icon(Icons.key),
+                  hintText: 'Juan Pérez',
+                  icon: const Icon(Icons.data_object),
                   iconColor: Theme.of(context).colorScheme.secondary,
                 ),
               ),
@@ -116,7 +120,7 @@ class RegisterForm extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: 20.0),
               child: TextField(
-                //controller: passwordController,
+                controller: register.dirC,
                 obscureText: true,
                 decoration: InputDecoration(
                   border: InputBorder.none,

@@ -25,7 +25,7 @@ class RegisterButton extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GestureDetector(
-                onTap: () => localAuth.authAction(),
+                onTap: () => localAuth.authAction(context),
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.5,
                   padding: EdgeInsets.symmetric(

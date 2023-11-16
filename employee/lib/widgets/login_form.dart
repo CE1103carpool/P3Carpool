@@ -1,7 +1,11 @@
+import 'package:employee/pages/auth/new_login.dart';
 import 'package:flutter/material.dart';
 
 class LoginForm extends StatelessWidget {
-  const LoginForm({super.key});
+  late final NewLogin login;
+  LoginForm({super.key, required NewLogin loginState}) {
+    login = loginState;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +31,7 @@ class LoginForm extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: 20.0),
               child: TextField(
-                //controller: emailController,
+                controller: login.userC,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   fillColor: Theme.of(context).colorScheme.secondary,
@@ -56,7 +60,7 @@ class LoginForm extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: 20.0),
               child: TextField(
-                //controller: passwordController,
+                controller: login.pwsC,
                 obscureText: true,
                 decoration: InputDecoration(
                   border: InputBorder.none,
