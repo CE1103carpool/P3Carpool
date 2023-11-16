@@ -1,4 +1,4 @@
-import 'package:employee/pages/content/estado_Viaje.dart';
+import 'package:employee/pages/content/estado_viaje.dart';
 import 'package:employee/widgets/driver_card.dart';
 import 'package:employee/widgets/origen_destino.dart';
 import 'package:employee/widgets/page_tittle.dart';
