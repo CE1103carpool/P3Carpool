@@ -72,6 +72,9 @@ public class Dijkstra {
         g.agregarAristaNoDirigida(2, 3, 1);
         g.agregarAristaNoDirigida(1, 3, 3);
 
+
+        //g es el origen del gafo (la empresa en nuesto caso)
+        //src es el punto de partida (del conductor)
         int dist[] = d.dijkstra(g, 0);
         System.out.println(Arrays.toString(dist));
     }
