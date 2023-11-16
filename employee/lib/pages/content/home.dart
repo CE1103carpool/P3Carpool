@@ -15,6 +15,8 @@ class Inicio extends StatefulWidget {
 late bool viajeEnProgreso;
 
 class _InicioState extends State<Inicio> {
+  String tipoSeleccionado = "vconamigos";
+
   @override
   void initState() {
     // TODO: implement initState
@@ -75,7 +77,7 @@ class _InicioState extends State<Inicio> {
                     Container(
                         height: MediaQuery.of(context).size.height * 0.065,
                         width: MediaQuery.of(context).size.width,
-                        child: SelectorTipoViaje())
+                        child: SelectorTipoViaje(homeP: this))
                   ],
                 ),
               ),
@@ -96,7 +98,7 @@ class _InicioState extends State<Inicio> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const SollicitarConductor(),
+        builder: (context) => SollicitarConductor(homeP: this),
       ),
     );
   }
@@ -109,15 +111,15 @@ class _InicioState extends State<Inicio> {
 }
 
 class SelectorTipoViaje extends StatefulWidget {
-  const SelectorTipoViaje({super.key});
-
+  late final _InicioState homeState;
+  SelectorTipoViaje({super.key, required _InicioState homeP}) {
+    homeState = homeP;
+  }
   @override
   State<SelectorTipoViaje> createState() => _SelectorTipoViajeState();
 }
 
 class _SelectorTipoViajeState extends State<SelectorTipoViaje> {
-  String tipoSeleccionado = "vconamigos";
-
   @override
   Widget build(BuildContext context) {
     return SegmentedButton(
@@ -132,14 +134,14 @@ class _SelectorTipoViajeState extends State<SelectorTipoViaje> {
               icon: Icon(Icons.car_rental))
         ],
         selected: {
-          tipoSeleccionado
+          widget.homeState.tipoSeleccionado
         },
         onSelectionChanged: (Set newSelection) {
           setState(() {
             // By default there is only a single segment that can be
             // selected at one time, so its value is always the first
             // item in the selected set.
-            tipoSeleccionado = newSelection.first;
+            widget.homeState.tipoSeleccionado = newSelection.first;
           });
         });
   }

@@ -2,10 +2,8 @@
 /*
 * ARCHIVO DE EJEMPLO
 * NO USAR
-* 
+*
 * */
-
-
 
 import com.sun.net.httpserver.HttpServer;
 

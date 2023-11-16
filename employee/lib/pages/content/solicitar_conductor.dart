@@ -3,11 +3,12 @@ import 'package:employee/widgets/driver_card.dart';
 import 'package:employee/widgets/origen_destino.dart';
 import 'package:employee/widgets/page_tittle.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class SollicitarConductor extends StatefulWidget {
-  const SollicitarConductor({super.key});
+  late final tipoH;
+  SollicitarConductor({super.key, required var homeP}) {
+    tipoH = homeP;
+  }
 
   @override
   State<SollicitarConductor> createState() => _SollicitarConductorState();
@@ -50,7 +51,7 @@ class _SollicitarConductorState extends State<SollicitarConductor> {
                   ),
                 ),
               ),
-              const DriverCard(),
+              DriverCard(tipoViaje: widget.tipoH.tipoSeleccionado),
               Container(
                 height: MediaQuery.of(context).size.height * 0.2,
                 width: MediaQuery.of(context).size.width,

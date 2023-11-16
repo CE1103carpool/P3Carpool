@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class DriverCard extends StatefulWidget {
-  const DriverCard({super.key});
+  late final String tipoConductor;
+  DriverCard({super.key, required String tipoViaje}) {
+    tipoConductor = tipoViaje;
+  }
 
   @override
   State<DriverCard> createState() => _DriverCardState();
@@ -18,7 +21,12 @@ class _DriverCardState extends State<DriverCard> {
         borderRadius: BorderRadius.circular(12),
       ),
       child: Center(
-        child: Text("Buscando conductores...."),
+        child: Column(
+          children: [
+            Text("Buscando conductores...."),
+            Text(widget.tipoConductor)
+          ],
+        ),
       ),
     );
   }
