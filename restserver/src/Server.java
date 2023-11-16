@@ -46,7 +46,7 @@ class SimpleHandler implements HttpHandler
         }
         return jsonObject;
     }
-    private JSONObject handleGet(JSONObject myJson){
+    private JSONObject handleGet(JSONObject myJson) throws InterruptedException {
         JSONObject respuesta = new JSONObject();
         String metodo = (String) myJson.get("tipoConsulta");
         if(metodo.equals("login")){
@@ -73,7 +73,12 @@ class SimpleHandler implements HttpHandler
                 respuesta.put("respuesta","exito");
                 respuesta.put("error","no");
                 System.out.println("registro exitoso");
+        }
+        else if(metodo.equals("solicitarConductor")){
+            //checar conductor
+            while (true){
 
+            }
         }
         return respuesta;
     }
@@ -83,7 +88,12 @@ class SimpleHandler implements HttpHandler
         if ("POST".equals(exchange.getRequestMethod())) {
             JSONObject myJson = getJsonBody(exchange.getRequestBody());
 
-            JSONObject responseJson = handleGet(myJson);
+            JSONObject responseJson = null;
+            try {
+                responseJson = handleGet(myJson);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
 
             exchange.sendResponseHeaders(200, responseJson.toJSONString().getBytes().length);
 
