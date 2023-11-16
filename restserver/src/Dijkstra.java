@@ -63,6 +63,7 @@ public class Dijkstra {
         return distancia;
     }
 
+    //Generar aleatoriamente esos datos
     public static void main(String args[]) {
         Dijkstra d = new Dijkstra();
         Dijkstra.Grafo g = d.new Grafo(4);
