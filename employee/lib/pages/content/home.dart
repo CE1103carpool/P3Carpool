@@ -1,3 +1,4 @@
+import 'package:employee/pages/content/calificaciones.dart';
 import 'package:employee/pages/content/estado_viaje.dart';
 import 'package:employee/pages/content/solicitar_conductor.dart';
 import 'package:employee/widgets/Botones/seguir_viaje.dart';
@@ -19,6 +20,7 @@ class _InicioState extends State<Inicio> {
   String tipoSeleccionado = "vconamigos";
   late final EstadoDelViaje estadoViaje = EstadoDelViaje(home: this);
   late final SollicitarConductor solicitar = SollicitarConductor(home: this);
+  String miConductor = "";
   @override
   void initState() {
     super.initState();
@@ -94,7 +96,12 @@ class _InicioState extends State<Inicio> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     GestureDetector(
-                      //onTap: () => VerViaje(context),
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MisCalificaciones(),
+                        ),
+                      ),
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.80,
                         height: MediaQuery.of(context).size.height * 0.1,

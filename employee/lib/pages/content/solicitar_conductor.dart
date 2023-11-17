@@ -110,6 +110,7 @@ class SollicitarConductor extends StatelessWidget {
           String result = data['respuesta'];
           if (result == "exito") {
             banderaConductor = true;
+            tipoH.miConductor = data['conductor'];
             tipoH.viajeProgreso();
           } else {
             sleep(const Duration(milliseconds: 500));

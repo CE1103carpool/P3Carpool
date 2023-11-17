@@ -1,3 +1,4 @@
+import 'package:employee/pages/content/calificar.dart';
 import 'package:employee/widgets/page_tittle.dart';
 import 'package:employee/widgets/status_text.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,13 @@ class _EstadoDelViajeState extends State<EstadoDelViaje> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     GestureDetector(
-                      //onTap: () => VerViaje(context),
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Calificar(
+                              conductorNombre: widget.myHome.miConductor),
+                        ),
+                      ),
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.80,
                         height: MediaQuery.of(context).size.height * 0.1,
