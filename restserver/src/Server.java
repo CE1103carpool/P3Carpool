@@ -14,7 +14,68 @@ import java.util.Scanner;
 
 public class Server implements Runnable{
 
+    Dijkstra d;
+    Dijkstra.Grafo g;
+
+
+
     public Server() {
+        d=new Dijkstra();
+        g = new Dijkstra.Grafo(30);
+        g.agregarAristaNoDirigida(0, 1, 2);
+        g.agregarAristaNoDirigida(1, 2, 1);
+        g.agregarAristaNoDirigida(0, 3, 6);
+        g.agregarAristaNoDirigida(2, 3, 1);
+        g.agregarAristaNoDirigida(1, 3, 3);
+        g.agregarAristaNoDirigida(0, 1, 2);
+        g.agregarAristaNoDirigida(1, 2, 1);
+        g.agregarAristaNoDirigida(0, 3, 6);
+        g.agregarAristaNoDirigida(2, 3, 1);
+        g.agregarAristaNoDirigida(1, 3, 3);
+        g.agregarAristaNoDirigida(0, 1, 2);
+        g.agregarAristaNoDirigida(1, 2, 1);
+        g.agregarAristaNoDirigida(0, 3, 6);
+        g.agregarAristaNoDirigida(2, 3, 1);
+        g.agregarAristaNoDirigida(1, 3, 3);
+        g.agregarAristaNoDirigida(0, 1, 2);
+        g.agregarAristaNoDirigida(1, 2, 1);
+        g.agregarAristaNoDirigida(0, 3, 6);
+        g.agregarAristaNoDirigida(2, 3, 1);
+        g.agregarAristaNoDirigida(1, 3, 3);
+        g.agregarAristaNoDirigida(0, 1, 2);
+        g.agregarAristaNoDirigida(1, 2, 1);
+        g.agregarAristaNoDirigida(0, 3, 6);
+        g.agregarAristaNoDirigida(2, 3, 1);
+        g.agregarAristaNoDirigida(1, 3, 3);
+        g.agregarAristaNoDirigida(0, 1, 2);
+        g.agregarAristaNoDirigida(1, 2, 1);
+        g.agregarAristaNoDirigida(0, 3, 6);
+        g.agregarAristaNoDirigida(2, 3, 1);
+        g.agregarAristaNoDirigida(1, 3, 3);
+        g.agregarAristaNoDirigida(0, 1, 2);
+        g.agregarAristaNoDirigida(1, 2, 1);
+        g.agregarAristaNoDirigida(0, 3, 6);
+        g.agregarAristaNoDirigida(2, 3, 1);
+        g.agregarAristaNoDirigida(1, 3, 3);
+        g.agregarAristaNoDirigida(0, 1, 2);
+        g.agregarAristaNoDirigida(1, 2, 1);
+        g.agregarAristaNoDirigida(0, 3, 6);
+        g.agregarAristaNoDirigida(2, 3, 1);
+        g.agregarAristaNoDirigida(1, 3, 3);
+        g.agregarAristaNoDirigida(0, 1, 2);
+        g.agregarAristaNoDirigida(1, 2, 1);
+        g.agregarAristaNoDirigida(0, 3, 6);
+        g.agregarAristaNoDirigida(2, 3, 1);
+        g.agregarAristaNoDirigida(1, 3, 3);
+        g.agregarAristaNoDirigida(0, 1, 2);
+        g.agregarAristaNoDirigida(1, 2, 1);
+        g.agregarAristaNoDirigida(0, 3, 6);
+        g.agregarAristaNoDirigida(2, 3, 1);
+        g.agregarAristaNoDirigida(1, 3, 3);
+        g.agregarAristaNoDirigida(0, 1, 2);
+        g.agregarAristaNoDirigida(1, 2, 1);
+        g.agregarAristaNoDirigida(0, 3, 6);
+        g.agregarAristaNoDirigida(2, 3, 1);
         Thread escucho = new Thread(this);
         escucho.start();
     }
@@ -50,7 +111,7 @@ class SimpleHandler implements HttpHandler
         JSONObject respuesta = new JSONObject();
         String metodo = (String) myJson.get("tipoConsulta");
         if(metodo.equals("login")){
-            String carnet = (String) myJson.get("carne").toString();
+            String carnet = (String) myJson.get("carnet").toString();
             String password = (String) myJson.get("password").toString();
             if (carnet.equals("2023") && password.equals("pws")){
                 respuesta.put("respuesta","exito");
@@ -80,9 +141,8 @@ class SimpleHandler implements HttpHandler
 
             }
         }
-        else if(metodo.equls("buscarCarro")){
+        else if(metodo.equals("buscarCarro")){
             int numero=5;
-            if (random.net
         }
         return respuesta;
     }
