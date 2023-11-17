@@ -1,6 +1,6 @@
 import java.util.*;
 public class Dijkstra {
-    class Grafo {
+    static class Grafo {
         LinkedList<Pair<Integer>> adj[];
         int n; // Número de vertices.
         Grafo(int n) {
@@ -17,7 +17,7 @@ public class Dijkstra {
             agregarAristaDirigida(b, a, costo);
         }
     }
-    class Pair<E> {
+    static class Pair<E> {
         E first;
         E second;
         Pair(E f, E s) {
@@ -66,7 +66,7 @@ public class Dijkstra {
     //Generar aleatoriamente esos datos
     public static void main(String args[]) {
         Dijkstra d = new Dijkstra();
-        Dijkstra.Grafo g = d.new Grafo(4);
+        Dijkstra.Grafo g = new Grafo(4);
         g.agregarAristaNoDirigida(0, 1, 2);
         g.agregarAristaNoDirigida(1, 2, 1);
         g.agregarAristaNoDirigida(0, 3, 6);

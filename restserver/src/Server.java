@@ -14,7 +14,68 @@ import java.util.Scanner;
 
 public class Server implements Runnable{
 
+    Dijkstra d;
+    Dijkstra.Grafo g;
+
+
+
     public Server() {
+        d=new Dijkstra();
+        g = new Dijkstra.Grafo(30);
+        g.agregarAristaNoDirigida(0, 1, 2);
+        g.agregarAristaNoDirigida(1, 2, 1);
+        g.agregarAristaNoDirigida(0, 3, 6);
+        g.agregarAristaNoDirigida(2, 3, 1);
+        g.agregarAristaNoDirigida(1, 3, 3);
+        g.agregarAristaNoDirigida(0, 1, 2);
+        g.agregarAristaNoDirigida(1, 2, 1);
+        g.agregarAristaNoDirigida(0, 3, 6);
+        g.agregarAristaNoDirigida(2, 3, 1);
+        g.agregarAristaNoDirigida(1, 3, 3);
+        g.agregarAristaNoDirigida(0, 1, 2);
+        g.agregarAristaNoDirigida(1, 2, 1);
+        g.agregarAristaNoDirigida(0, 3, 6);
+        g.agregarAristaNoDirigida(2, 3, 1);
+        g.agregarAristaNoDirigida(1, 3, 3);
+        g.agregarAristaNoDirigida(0, 1, 2);
+        g.agregarAristaNoDirigida(1, 2, 1);
+        g.agregarAristaNoDirigida(0, 3, 6);
+        g.agregarAristaNoDirigida(2, 3, 1);
+        g.agregarAristaNoDirigida(1, 3, 3);
+        g.agregarAristaNoDirigida(0, 1, 2);
+        g.agregarAristaNoDirigida(1, 2, 1);
+        g.agregarAristaNoDirigida(0, 3, 6);
+        g.agregarAristaNoDirigida(2, 3, 1);
+        g.agregarAristaNoDirigida(1, 3, 3);
+        g.agregarAristaNoDirigida(0, 1, 2);
+        g.agregarAristaNoDirigida(1, 2, 1);
+        g.agregarAristaNoDirigida(0, 3, 6);
+        g.agregarAristaNoDirigida(2, 3, 1);
+        g.agregarAristaNoDirigida(1, 3, 3);
+        g.agregarAristaNoDirigida(0, 1, 2);
+        g.agregarAristaNoDirigida(1, 2, 1);
+        g.agregarAristaNoDirigida(0, 3, 6);
+        g.agregarAristaNoDirigida(2, 3, 1);
+        g.agregarAristaNoDirigida(1, 3, 3);
+        g.agregarAristaNoDirigida(0, 1, 2);
+        g.agregarAristaNoDirigida(1, 2, 1);
+        g.agregarAristaNoDirigida(0, 3, 6);
+        g.agregarAristaNoDirigida(2, 3, 1);
+        g.agregarAristaNoDirigida(1, 3, 3);
+        g.agregarAristaNoDirigida(0, 1, 2);
+        g.agregarAristaNoDirigida(1, 2, 1);
+        g.agregarAristaNoDirigida(0, 3, 6);
+        g.agregarAristaNoDirigida(2, 3, 1);
+        g.agregarAristaNoDirigida(1, 3, 3);
+        g.agregarAristaNoDirigida(0, 1, 2);
+        g.agregarAristaNoDirigida(1, 2, 1);
+        g.agregarAristaNoDirigida(0, 3, 6);
+        g.agregarAristaNoDirigida(2, 3, 1);
+        g.agregarAristaNoDirigida(1, 3, 3);
+        g.agregarAristaNoDirigida(0, 1, 2);
+        g.agregarAristaNoDirigida(1, 2, 1);
+        g.agregarAristaNoDirigida(0, 3, 6);
+        g.agregarAristaNoDirigida(2, 3, 1);
         Thread escucho = new Thread(this);
         escucho.start();
     }
@@ -32,7 +93,9 @@ public class Server implements Runnable{
     }
 }
 class SimpleHandler implements HttpHandler
+
 {
+    AddXmlNode adder = new AddXmlNode();
     private JSONObject getJsonBody(InputStream body){
         Scanner s = new Scanner(body).useDelimiter("\\A");
         String jsonImput = s.hasNext() ? s.next() : "";
@@ -47,12 +110,22 @@ class SimpleHandler implements HttpHandler
         return jsonObject;
     }
     private JSONObject handleGet(JSONObject myJson) throws InterruptedException {
+        System.out.println("handle metodo aceptado");
         JSONObject respuesta = new JSONObject();
         String metodo = (String) myJson.get("tipoConsulta");
         if(metodo.equals("login")){
-            String carnet = (String) myJson.get("carne").toString();
+<<<<<<< HEAD
+            System.out.println("metodo login");
+            String carnet = (String) myJson.get("carnet").toString();
+            System.out.println("carnet obtenido");
+=======
+            String carnet = (String) myJson.get("carnet").toString();
+>>>>>>> edf8104a45bee53c5a471dbe31b6f887613efd8d
             String password = (String) myJson.get("password").toString();
-            if (carnet.equals("2023") && password.equals("pws")){
+            String contrasennaServer = adder.leerXML(carnet);
+            System.out.println("password: "+password);
+            System.out.println("contra: " +contrasennaServer);
+            if (password.equals(contrasennaServer)){
                 respuesta.put("respuesta","exito");
                 respuesta.put("error","no");
                 System.out.println("login exitoso");
@@ -64,10 +137,12 @@ class SimpleHandler implements HttpHandler
             }
         }
         else if(metodo.equals("register")){
-            String carnet = (String) myJson.get("carne").toString();
+            String carnet = (String) myJson.get("carnet").toString();
             String password = (String) myJson.get("password").toString();
-            String nombre = (String) myJson.get("nombre").toString();
+            String nombre = (String) myJson.get("name").toString();
             String direccion = (String) myJson.get("direccion").toString();
+            adder.XMLAppend(carnet,password,nombre,direccion);
+
 
             //metodos del xml
                 respuesta.put("respuesta","exito");
@@ -80,20 +155,26 @@ class SimpleHandler implements HttpHandler
 
             }
         }
-        else if(metodo.equls("buscarCarro")){
+        else if(metodo.equals("buscarCarro")){
             int numero=5;
-            if (random.net
+<<<<<<< HEAD
+            //if (random.net)
+=======
+>>>>>>> edf8104a45bee53c5a471dbe31b6f887613efd8d
         }
         return respuesta;
     }
     @Override
     public void handle(HttpExchange exchange) throws IOException
     {
+        System.out.println("handle");
         if ("POST".equals(exchange.getRequestMethod())) {
+            System.out.println("post");
             JSONObject myJson = getJsonBody(exchange.getRequestBody());
 
             JSONObject responseJson = null;
             try {
+                System.out.println("Handle method");
                 responseJson = handleGet(myJson);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);

@@ -8,8 +8,8 @@ import javax.xml.transform.stream.*;
 public class ManejoXML {
 
     public static void main(String[] args) {
-        escribirXML("archivo.xml");
-        leerXML("archivo.xml");
+        escribirXML("archivoPrueba.xml");
+        leerXML("archivoPrueba.xml");
     }
 
     public static void escribirXML(String nombreArchivo) {
@@ -18,11 +18,11 @@ public class ManejoXML {
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
             Document doc = docBuilder.newDocument();
 
-            Element rootElement = doc.createElement("ElementoRaiz");
+            Element rootElement = doc.createElement("ElementoRai");
             doc.appendChild(rootElement);
 
-            Element elemento = doc.createElement("ElementoHijo");
-            elemento.appendChild(doc.createTextNode("Esto es un dato"));
+            Element elemento = doc.createElement("Elemento");
+            elemento.appendChild(doc.createTextNode("Esto"));
             rootElement.appendChild(elemento);
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -45,7 +45,7 @@ public class ManejoXML {
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
             Document doc = docBuilder.parse(new File(nombreArchivo));
 
-            NodeList listaDatos = doc.getElementsByTagName("ElementoHijo");
+            NodeList listaDatos = doc.getElementsByTagName("Employee");
 
             for (int i = 0; i < listaDatos.getLength(); i++) {
                 Node nodo = listaDatos.item(i);
