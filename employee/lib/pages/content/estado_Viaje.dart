@@ -3,7 +3,10 @@ import 'package:employee/widgets/status_text.dart';
 import 'package:flutter/material.dart';
 
 class EstadoDelViaje extends StatefulWidget {
-  const EstadoDelViaje({super.key});
+  late final dynamic myHome;
+  EstadoDelViaje({super.key, required home}) {
+    myHome = home;
+  }
 
   @override
   State<EstadoDelViaje> createState() => _EstadoDelViajeState();

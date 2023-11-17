@@ -1,9 +1,10 @@
+import 'package:employee/pages/content/estado_viaje.dart';
+import 'package:employee/pages/content/solicitar_conductor.dart';
 import 'package:employee/widgets/Botones/seguir_viaje.dart';
 import 'package:employee/widgets/page_tittle.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/Botones/solicitar_carpool.dart';
 import '../../widgets/drawer.dart';
-import 'solicitar_conductor.dart';
 
 class Inicio extends StatefulWidget {
   const Inicio({super.key});
@@ -16,10 +17,10 @@ late bool viajeEnProgreso;
 
 class _InicioState extends State<Inicio> {
   String tipoSeleccionado = "vconamigos";
-
+  late final EstadoDelViaje estadoViaje = EstadoDelViaje(home: this);
+  late final SollicitarConductor solicitar = SollicitarConductor(home: this);
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     viajeEnProgreso = false;
   }
@@ -95,10 +96,13 @@ class _InicioState extends State<Inicio> {
   }
 
   nextPage(context) {
+    if (!viajeEnProgreso) {
+      solicitar.buscarConductor();
+    }
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => SollicitarConductor(homeP: this),
+        builder: (context) => !viajeEnProgreso ? solicitar : estadoViaje,
       ),
     );
   }

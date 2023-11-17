@@ -1,28 +1,17 @@
-import 'package:employee/pages/content/estado_viaje.dart';
+import 'dart:io';
+
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
 import 'package:employee/widgets/driver_card.dart';
 import 'package:employee/widgets/origen_destino.dart';
 import 'package:employee/widgets/page_tittle.dart';
 import 'package:flutter/material.dart';
 
-class SollicitarConductor extends StatefulWidget {
-  late final tipoH;
-  SollicitarConductor({super.key, required var homeP}) {
-    tipoH = homeP;
-  }
-
-  @override
-  State<SollicitarConductor> createState() => _SollicitarConductorState();
-}
-
-late bool ready;
-late Color colorBotton;
-
-class _SollicitarConductorState extends State<SollicitarConductor> {
-  @override
-  void initState() {
-    super.initState();
-    ready = false;
-    colorBotton = Color.fromARGB(255, 122, 122, 130);
+class SollicitarConductor extends StatelessWidget {
+  late final dynamic tipoH;
+  SollicitarConductor({super.key, required home}) {
+    tipoH = home;
   }
 
   @override
@@ -51,7 +40,7 @@ class _SollicitarConductorState extends State<SollicitarConductor> {
                   ),
                 ),
               ),
-              DriverCard(tipoViaje: widget.tipoH.tipoSeleccionado),
+              DriverCard(tipoViaje: tipoH.tipoSeleccionado),
               Container(
                 height: MediaQuery.of(context).size.height * 0.2,
                 width: MediaQuery.of(context).size.width,
@@ -69,7 +58,7 @@ class _SollicitarConductorState extends State<SollicitarConductor> {
                             vertical:
                                 MediaQuery.of(context).size.height * 0.01),
                         decoration: BoxDecoration(
-                          color: colorBotton,
+                          color: Colors.blue,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Row(
@@ -102,29 +91,37 @@ class _SollicitarConductorState extends State<SollicitarConductor> {
         ));
   }
 
-  VerViaje(BuildContext context) {
-    if (!ready) {
-      setState(() {
-        colorBotton = Color.fromARGB(255, 17, 17, 107);
-        ready = !ready;
-      });
-    } else {
-      /*print("hola");
-      return http.post(
-        Uri.parse('https://rstest2.montero.tk/'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(<String, String>{
-          'title': "hola",
-        }),
-      );*/
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const EstadoDelViaje(),
-        ),
-      );
+  buscarConductor() async {
+    bool banderaConductor = false;
+    while (!banderaConductor) {
+      try {
+        http.Response resp = await http.post(
+          Uri.parse('https://rstest2.montero.tk/'),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(<String, String>{
+            "tipoConsulta": "buscarCarro",
+          }),
+        );
+
+        if (resp.statusCode == 200) {
+          var data = jsonDecode(resp.body.toString());
+          String result = data['respuesta'];
+          if (result == "exito") {
+            banderaConductor = true;
+            tipoH.viajeProgreso();
+          } else {
+            sleep(const Duration(milliseconds: 500));
+          }
+        }
+      } catch (e) {
+        rethrow;
+      }
     }
+  }
+
+  VerViaje(BuildContext context) {
+    tipoH.viajeProgreso();
   }
 }

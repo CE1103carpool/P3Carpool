@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
 class SolicitarCarpool extends StatelessWidget {
-  late var home;
-  SolicitarCarpool({super.key, required this.home});
+  late final dynamic homePage;
+  SolicitarCarpool({super.key, required home}) {
+    homePage = home;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,9 @@ class SolicitarCarpool extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           GestureDetector(
-            onTap: () => home.nextPage(context),
+            onTap: () {
+              homePage.nextPage(context);
+            },
             child: Container(
               width: MediaQuery.of(context).size.width * 0.80,
               height: MediaQuery.of(context).size.height * 0.15,

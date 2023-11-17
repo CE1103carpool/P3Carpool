@@ -80,6 +80,10 @@ class SimpleHandler implements HttpHandler
 
             }
         }
+        else if(metodo.equls("buscarCarro")){
+            int numero=5;
+            if (random.net
+        }
         return respuesta;
     }
     @Override
