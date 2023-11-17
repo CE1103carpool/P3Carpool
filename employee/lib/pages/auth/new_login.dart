@@ -50,8 +50,8 @@ class NewLogin extends StatelessWidget {
   }
 
   authAction(context) async {
-    //atuh.loginStatus();
-    try {
+    atuh.loginStatus();
+    /*try {
       Response response = await post(Uri.parse('https://rsjava.montero.tk/'),
           body: jsonEncode(<String, String>{
             "tipoConsulta": "login",
@@ -89,6 +89,6 @@ class NewLogin extends StatelessWidget {
       }
     } catch (e) {
       print(e.toString());
-    }
+    }*/
   }
 }

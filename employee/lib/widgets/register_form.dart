@@ -1,4 +1,5 @@
 import 'package:employee/pages/auth/new_register.dart';
+import 'package:employee/widgets/selector_pais.dart';
 import 'package:flutter/material.dart';
 
 class RegisterForm extends StatelessWidget {
@@ -117,20 +118,7 @@ class RegisterForm extends StatelessWidget {
               color: Theme.of(context).colorScheme.secondaryContainer,
               borderRadius: BorderRadius.circular(6),
             ),
-            child: Padding(
-              padding: const EdgeInsets.only(left: 20.0),
-              child: TextField(
-                controller: register.dirC,
-                obscureText: true,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  fillColor: Theme.of(context).colorScheme.secondary,
-                  hintText: 'Cartago',
-                  icon: const Icon(Icons.home),
-                  iconColor: Theme.of(context).colorScheme.secondary,
-                ),
-              ),
-            ),
+            child: selectorPais(),
           ),
         ],
       ),

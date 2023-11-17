@@ -1,9 +1,9 @@
-import 'package:employee/pages/auth/new_login.dart';
-import 'package:employee/pages/auth/new_register.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../content/home.dart';
+import 'new_login.dart';
+import 'new_register.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -28,7 +28,9 @@ class _AuthPageState extends State<AuthPage> {
     // ignore: use_build_context_synchronously
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => const Inicio()),
+      MaterialPageRoute(
+        builder: (context) => const Inicio(),
+      ),
     );
   }
 

@@ -30,9 +30,35 @@ class AutoField extends StatelessWidget {
   const AutoField({super.key});
 
   static const List<String> _kOptions = <String>[
-    'aardvark',
-    'bobcat',
-    'chameleon',
+    'empresa',
+    'atenas',
+    'aranjuez',
+    'amon',
+    'brasilia',
+    'cartago',
+    'dino',
+    'eraldo',
+    'fosa',
+    'florida',
+    'ferdin',
+    'guanajuato',
+    'guadalajara',
+    'garibaldi',
+    'handalucía',
+    'iridio',
+    'irazu',
+    'juntas',
+    'kilomb',
+    'llanoGrande',
+    'limon',
+    'murcia',
+    'nandayure',
+    'queretaro',
+    'rosario',
+    'sacramento',
+    'tenorio',
+    'texas',
+    'uvita',
   ];
   @override
   Widget build(BuildContext context) {

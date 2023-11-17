@@ -1,9 +1,30 @@
-import 'package:employee/widgets/page_tittle.dart';
 import 'package:flutter/material.dart';
+import '../../widgets/Botones/seguir_viaje.dart';
+import '../../widgets/Botones/solicitar_carpool.dart';
 import '../../widgets/drawer.dart';
+import '../../widgets/page_tittle.dart';
+import 'estado_viaje.dart';
+import 'solicitar_conductor.dart';
 
-class Inicio extends StatelessWidget {
+class Inicio extends StatefulWidget {
   const Inicio({super.key});
+
+  @override
+  State<Inicio> createState() => _InicioState();
+}
+
+late bool viajeEnProgreso;
+
+class _InicioState extends State<Inicio> {
+  String tipoSeleccionado = "vconamigos";
+  late final EstadoDelViaje estadoViaje = EstadoDelViaje(home: this);
+  late final SollicitarConductor solicitar = SollicitarConductor(home: this);
+  TextEditingController asientos = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    viajeEnProgreso = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +91,7 @@ class Inicio extends StatelessWidget {
                                 .secondaryContainer,
                           ),
                           child: TextField(
-                            //controller: passwordController,
+                            controller: asientos,
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -85,6 +106,7 @@ class Inicio extends StatelessWidget {
                   ],
                 ),
               ),
+              SeguirViaje(home: this),
               Container(
                 height: MediaQuery.of(context).size.height * 0.2,
                 width: MediaQuery.of(context).size.width,
@@ -94,15 +116,15 @@ class Inicio extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     GestureDetector(
-                      onTap: () => {},
+                      // onTap: () => VerViaje(context),
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.80,
-                        height: MediaQuery.of(context).size.height * 0.15,
+                        height: MediaQuery.of(context).size.height * 0.1,
                         padding: EdgeInsets.symmetric(
                             vertical:
-                                MediaQuery.of(context).size.height * 0.02),
+                                MediaQuery.of(context).size.height * 0.01),
                         decoration: BoxDecoration(
-                          color: Color(0XFF312986),
+                          color: Colors.blue,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Row(
@@ -111,10 +133,10 @@ class Inicio extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              "Hacer un\nviaje",
+                              "Ver mis calificaciones",
                               style: TextStyle(
                                   fontSize:
-                                      MediaQuery.of(context).size.height * 0.04,
+                                      MediaQuery.of(context).size.height * 0.03,
                                   color:
                                       Theme.of(context).colorScheme.background),
                             ),
@@ -134,9 +156,59 @@ class Inicio extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        height: MediaQuery.of(context).size.height * 0.095,
+    );
+  }
+
+  nextPage(context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => !viajeEnProgreso ? solicitar : estadoViaje,
       ),
     );
+  }
+
+  viajeProgreso() {
+    setState(() {
+      viajeEnProgreso = !viajeEnProgreso;
+    });
+    nextPage(context);
+  }
+}
+
+class SelectorTipoViaje extends StatefulWidget {
+  late final _InicioState homeState;
+  SelectorTipoViaje({super.key, required _InicioState homeP}) {
+    homeState = homeP;
+  }
+  @override
+  State<SelectorTipoViaje> createState() => _SelectorTipoViajeState();
+}
+
+class _SelectorTipoViajeState extends State<SelectorTipoViaje> {
+  @override
+  Widget build(BuildContext context) {
+    return SegmentedButton(
+        segments: const [
+          ButtonSegment(
+              value: "vconamigos",
+              label: Text("con amigos"),
+              icon: Icon(Icons.people)),
+          ButtonSegment(
+              value: "valazar",
+              label: Text("al azar"),
+              icon: Icon(Icons.car_rental))
+        ],
+        selected: {
+          widget.homeState.tipoSeleccionado
+        },
+        onSelectionChanged: (Set newSelection) {
+          setState(() {
+            // By default there is only a single segment that can be
+            // selected at one time, so its value is always the first
+            // item in the selected set.
+            widget.homeState.tipoSeleccionado = newSelection.first;
+          });
+        });
   }
 }

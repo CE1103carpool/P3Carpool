@@ -1,8 +1,9 @@
-import 'package:employee/pages/auth/auth_page.dart';
-import 'package:employee/pages/content/home.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'auth/auth_page.dart';
+import 'content/home.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

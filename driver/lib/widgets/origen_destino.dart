@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 
-import '../pages/auth/new_login.dart';
-
-class LoginForm extends StatelessWidget {
-  late final NewLogin login;
-  LoginForm({super.key, required NewLogin loginState}) {
-    login = loginState;
-  }
+class OrigenDestino extends StatelessWidget {
+  final origen;
+  final destino;
+  const OrigenDestino(
+      {super.key, required String this.origen, required String this.destino});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.48,
+      height: MediaQuery.of(context).size.height * 0.25,
       width: MediaQuery.of(context).size.width,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("Usuario:"),
+          const Text("Origen:"),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.01,
           ),
@@ -32,13 +30,15 @@ class LoginForm extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: 20.0),
               child: TextField(
-                controller: login.userC,
+                enabled: false,
+                //controller: emailController,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   fillColor: Theme.of(context).colorScheme.secondary,
-                  hintText: '2023000000',
-                  icon: const Icon(Icons.perm_identity_rounded),
-                  iconColor: Theme.of(context).colorScheme.secondary,
+                  hintText: origen,
+                  hintStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.onSecondaryContainer,
+                  ),
                 ),
               ),
             ),
@@ -46,7 +46,7 @@ class LoginForm extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.02,
           ),
-          const Text("Contraseña:"),
+          const Text("Destino:"),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.01,
           ),
@@ -61,16 +61,16 @@ class LoginForm extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: 20.0),
               child: TextField(
-                controller: login.pwsC,
-                obscureText: true,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  fillColor: Theme.of(context).colorScheme.secondary,
-                  hintText: '************',
-                  icon: const Icon(Icons.key),
-                  iconColor: Theme.of(context).colorScheme.secondary,
-                ),
-              ),
+                  //controller: passwordController,
+                  enabled: false,
+                  decoration: InputDecoration(
+                      border: InputBorder.none,
+                      fillColor: Theme.of(context).colorScheme.secondary,
+                      hintText: destino,
+                      hintStyle: TextStyle(
+                        color:
+                            Theme.of(context).colorScheme.onSecondaryContainer,
+                      ))),
             ),
           ),
         ],

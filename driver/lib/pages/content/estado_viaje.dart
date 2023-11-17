@@ -1,6 +1,7 @@
-import 'package:employee/widgets/page_tittle.dart';
-import 'package:employee/widgets/status_text.dart';
 import 'package:flutter/material.dart';
+
+import '../../widgets/page_tittle.dart';
+import '../../widgets/status_text.dart';
 
 class EstadoDelViaje extends StatefulWidget {
   late final dynamic myHome;
@@ -37,6 +38,8 @@ class _EstadoDelViajeState extends State<EstadoDelViaje> {
                 ),
               ),
               const TextoDeEstado(titulo: "ETA:\n### SEGUNDOS"),
+              const TextoDeEstado(titulo: "Pasajeros\nrecogidos: ###"),
+              const Text("Lista de pasajeros"),
               Container(
                 height: MediaQuery.of(context).size.height * 0.2,
                 width: MediaQuery.of(context).size.width,
@@ -63,7 +66,7 @@ class _EstadoDelViajeState extends State<EstadoDelViaje> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              "Calificar conductor",
+                              "Calificar",
                               style: TextStyle(
                                   fontSize:
                                       MediaQuery.of(context).size.height * 0.03,
@@ -81,7 +84,7 @@ class _EstadoDelViajeState extends State<EstadoDelViaje> {
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),

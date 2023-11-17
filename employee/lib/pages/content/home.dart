@@ -85,12 +85,54 @@ class _InicioState extends State<Inicio> {
               viajeEnProgreso
                   ? SeguirViaje(home: this)
                   : SolicitarCarpool(home: this),
+              Container(
+                height: MediaQuery.of(context).size.height * 0.2,
+                width: MediaQuery.of(context).size.width,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      //onTap: () => VerViaje(context),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.80,
+                        height: MediaQuery.of(context).size.height * 0.1,
+                        padding: EdgeInsets.symmetric(
+                            vertical:
+                                MediaQuery.of(context).size.height * 0.01),
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Ver calificaciones",
+                              style: TextStyle(
+                                  fontSize:
+                                      MediaQuery.of(context).size.height * 0.03,
+                                  color:
+                                      Theme.of(context).colorScheme.background),
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              size: MediaQuery.of(context).size.height * 0.08,
+                              color: Theme.of(context).colorScheme.background,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        height: MediaQuery.of(context).size.height * 0.095,
       ),
     );
   }
